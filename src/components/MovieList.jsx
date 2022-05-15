@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import CardList, { PreloadedImage } from "./Card/Card";
 import { Flex, Spinner, Grid, GridItem, Heading } from "@chakra-ui/react";
-import { fetchApi } from "../lib/api";
+import { fetchMovieByTitle } from "../features/movieSlice";
 
 export default function Movies() {
-  const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const getAllMovies = async () => {
-    const response = await fetchApi(
-      "movies?sort=title&type=movies&year=2021&genres=accion"
-    );
-    setMovies(response.results);
-    setLoading(false);
-  };
-  useEffect(() => {
-    // window.addEventListener("load", getInitialPageLoad());
-    getAllMovies();
-  }, []);
+  const [loading, setLoading] = useState(true)
+  const movies = useSelector((state) => state.movies.items)
+  console.log(movies)
+  const dispatch = useDispatch()
+  useEffect(() =>{
+    dispatch(fetchMovieByTitle(['batwoman']))
+    setLoading(false)
+  },[dispatch])
 
   return (
     <>
@@ -35,12 +31,12 @@ export default function Movies() {
           mt={5}
           mx={["5em", null, "1em"]}
         >
-          {movies &&
-            movies.slice(0, 10).map((item) => (
-              <GridItem padding="auto">
-                <CardList key={item._id} item={item} />
-              </GridItem>
-            ))}
+          <GridItem>
+
+          {movies && (
+            <CardList movie={movies} key={movies.imdbID}/>
+            )}
+          </GridItem>
         </Grid>
       )}
     </>

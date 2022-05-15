@@ -6,12 +6,14 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Provider } from "react-redux";
-import store from "./app/store";
+import store from "./features/store"
 
 import MovieDetails from "./components/Details/MovieDetails.jsx";
 import Menu from "./components/Header.jsx";
 import Series from "./components/Series";
 import List from "./components/Movies";
+import SeriesDetail from "./components/Series/Details/detail";
+import MovieDetail from "./components/Movies/Details/detail";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -25,6 +27,8 @@ root.render(
             <Route path=":title/:id" element={<MovieDetails />} />
             <Route path="category/movies" element={<List />} />
             <Route path="category/series" element={<Series />} />
+            <Route path="category/series/:title" element={<SeriesDetail />} />
+            <Route path ="category/movies/:title" element={<MovieDetail />}/>
           </Routes>
         </BrowserRouter>
       </Provider>

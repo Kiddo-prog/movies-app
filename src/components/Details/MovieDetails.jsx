@@ -2,31 +2,16 @@ import React, { useState, useEffect } from "react";
 import { Box } from "@chakra-ui/react";
 import { useParams, Link } from "react-router-dom";
 import { Loading } from "../MovieList";
-import { fetchApi } from "../../lib/api";
 import Details from "./Details.jsx";
+import { useSelector } from "react-redux";
 
 function MovieDetails() {
-  const params = useParams();
-  const [detail, setDetail] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const getMovieDetail = async () => {
-    const response = await fetchApi(`movie/${params.id}`);
-    setDetail(response.result);
-    setLoading(false);
-  };
-  useEffect(() => {
-    getMovieDetail();
-  });
-
+  const detail = useSelector((state) => state.movies.items)
   return (
     <Box>
-      {loading ? (
-        <Loading />
-      ) : (
         <Box>
           <Details detail={detail} />
         </Box>
-      )}
     </Box>
   );
 }
