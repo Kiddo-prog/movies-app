@@ -8,6 +8,7 @@ export default function MovieResult({data}){
         <Box>
         <Link to={`${data.Title}`}>
             <Image src={data.Poster} alt="movie-poster" boxSize="200px" objectFit="cover"/>
+            <Text fontSize="1em" fontWeight="600" textAlign="center" mt="1em">{data.Title}</Text>
             </Link>
         </Box>
         </>
