@@ -59,8 +59,3 @@ export function Loading() {
   );
 }
 
-// export function getInitialPageLoad() {
-//   setTimeout(() => {
-//     console.log("Welcome to movie site");
-//   }, 5000);
-// }
