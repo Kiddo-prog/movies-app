@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CardList, { PreloadedImage } from "./Card/Card";
-import { Flex, Spinner, Grid, GridItem, Heading } from "@chakra-ui/react";
+import CardList from "./Card/Card";
+import { Flex, Spinner, Grid, GridItem } from "@chakra-ui/react";
 import { fetchMovieByTitle } from "../features/movieSlice";
 
 export default function Movies() {

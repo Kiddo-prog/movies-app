@@ -8,13 +8,13 @@ export default function SeriesDetails({ detail }) {
       <Image src={detail.Poster} alt="detail" objectFit="contain" />
     </Box>
         <Spacer />
-      <Box fontWeight="500" fontSize={{base: '0.5em', md: '2em', lg: '0.9em', }} w="600px">
+      <Box fontWeight="500" fontSize={{base: '0.7em', md: '2em', lg: '0.9em'}}>
       <Heading as="h6" fontSize="2em" mb="1em">
         {detail.Title}
       </Heading>
       <Text>Rated: {detail.Rated}</Text>
       <Text>Director: {detail.Director}</Text>
-      <Text>{detail.Plot}</Text>
+      <Text>Plot: {detail.Plot}</Text>
       <Text>Runtime: {detail.Runtime}</Text>
       <Text>Ratings: {detail.ratings}</Text>
       <Text>Country: {detail.Country}</Text>

@@ -8,7 +8,7 @@ export default function Details({ detail }) {
       <Image src={detail.Poster} alt="detail" objectFit="contain" boxSize={{lg: '500px'}}/>
     </Box>
         <Spacer />
-      <Box fontWeight="500" fontSize={{base: '0.5em', md: '2em', lg: '0.9em', }}>
+      <Box fontWeight="500" fontSize={{base: '0.5em', md: '2em', lg: '0.9em' }}>
       <Heading as="h6" fontSize="2em" mb="1em">
         {detail.Title}
       </Heading>

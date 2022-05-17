@@ -3,6 +3,7 @@ import { fetchMovieByTitleID } from '../../../features/movieSlice'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import SeriesDetails from './'
+import { Box } from "@chakra-ui/react"
 
 export default function SeriesDetail() {
   const detail = useSelector((state) => state.movies.id)
@@ -14,7 +15,9 @@ export default function SeriesDetail() {
   
   return (
     <>
-    <SeriesDetails detail={detail}/>
+    <Box mx="20px">
+      <SeriesDetails detail={detail}/>
+    </Box>
     </>
   )
 }
