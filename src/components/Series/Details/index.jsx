@@ -3,15 +3,15 @@ import { Box, Heading, Text, Image, Flex, Spacer } from "@chakra-ui/react";
 
 export default function SeriesDetails({ detail }) {
   return (
-    <Flex direction={{base: 'column-reverse', md:"row-reverse", lg: 'row-reverse'}} margin="2em" alignItems="flex-start">
+    <Flex direction={'column'} margin="2em" alignItems="center">
+      <Heading as="h6" fontSize="2em" mb="1em">
+        {detail.Title}
+      </Heading>
     <Box margin="2em 4em">
       <Image src={detail.Poster} alt="detail" objectFit="contain" />
     </Box>
         <Spacer />
-      <Box fontWeight="500" fontSize={{base: '0.7em', md: '2em', lg: '0.9em'}}>
-      <Heading as="h6" fontSize="2em" mb="1em">
-        {detail.Title}
-      </Heading>
+      <Box fontWeight="500" fontSize={{base: '0.9em', md: '2em', lg: '1.1em'}}>
       <Text>Rated: {detail.Rated}</Text>
       <Text>Director: {detail.Director}</Text>
       <Text>Plot: {detail.Plot}</Text>
