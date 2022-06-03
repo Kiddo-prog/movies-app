@@ -4,7 +4,6 @@ export const fetchMovieByTitle = createAsyncThunk('fetchMovieByTitle', (
   async(title) => {
     const request = await fetch(`https://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_KEY}&t=${title}&plot=full`);
     const response = await request.json();
-    console.log(response);
     return response;
   }
 ))
@@ -13,7 +12,6 @@ export const fetchMovieBySearch = createAsyncThunk('fetchMovieBySearch', (
   async(title) => {
     const request = await fetch(`https://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_KEY}&s=${title}&plot=full&type=movie`);
     const response = await request.json();
-    console.log(response);
     return response;
   }
 ))
@@ -22,7 +20,6 @@ export const fetchMovieBySeries = createAsyncThunk('fetchMovieBySeries', (
   async(title) => {
     const request = await fetch(`https://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_KEY}&s=${title}&plot=full&type=series`);
     const response = await request.json();
-    console.log(response);
     return response;
   }
 ))
@@ -31,7 +28,6 @@ export const fetchMovieByTitleID = createAsyncThunk('fetchMovieByTitleID', (
   async(title) => {
     const request = await fetch(`https://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_KEY}&t=${title}&plot=full`);
     const response = await request.json();
-    console.log(response);
     return response;
   }
 ))
@@ -40,7 +36,8 @@ const initialState = {
   items: {},
   movie: {},
   series: {},
-  id: {}
+  id: {},
+  status: ''
 }
 export const movieSlice = createSlice({
   name: "movies",
@@ -49,43 +46,49 @@ export const movieSlice = createSlice({
     getAllMovies(state, {payload}) {
       return {
         ...state,
-        items: payload
+        items: payload,
       }
     },
   },
   extraReducers: {
-    [fetchMovieByTitle.pending]: () => {
-      console.log('Pending')
-    },
-    [fetchMovieByTitle.fulfilled]: (state, {payload}) => {
-      console.log("Fulfilled")
-      return{
+    [fetchMovieByTitle.pending]: (state) => {
+      return {
         ...state,
-        items: payload
+        status: 'Loading...'
       }
     },
-    [fetchMovieByTitle.rejected]: () => {
-      console.log('Rejected')
-    },
-    [fetchMovieBySearch.fulfilled]: (state, {payload}) => {
-      console.log("Fulfilled")
+    [fetchMovieByTitle.fulfilled]: (state, {payload}) => {
       return{
         ...state,
-        movie: payload
+        items: payload,
+        status: 'fulfilled'
+      }
+    },
+    [fetchMovieByTitle.rejected]: (state) => {
+      return {
+        ...state,
+        status: 'Rejected'
+      }
+    },
+    [fetchMovieBySearch.fulfilled]: (state, {payload}) => {
+      return{
+        ...state,
+        movie: payload,
+        status: 'fulfilled'
       }
     },
     [fetchMovieBySeries.fulfilled]: (state, {payload}) => {
-      console.log("Fulfilled")
       return{
         ...state,
-        series: payload
+        series: payload,
+        status: 'fulfilled'
       }
     },
     [fetchMovieByTitleID.fulfilled]: (state, {payload}) => {
-      console.log("Fulfilled")
       return{
         ...state,
-        id: payload
+        id: payload,
+        status: 'fulfilled'
       }
     }
   }
